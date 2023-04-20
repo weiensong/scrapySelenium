@@ -51,7 +51,7 @@ class XiaChuFang_Robot(Robot, ABC):
                 food_materials.append(food_ma_list[i]+food_kg_list[i])
             # 生成菜品字典，并用于写入数据库
             food_dict = {'food_name': food_name, 'food_img': food_img, 'food_materials': ' '.join(food_materials), 'food_url': food_urls_list[flag]}
-            print(food_dict)
+            # print(food_dict)
             wtm(food_dict, 'xcf')
             flag = flag + 1
             self.close_window()
