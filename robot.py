@@ -99,3 +99,7 @@ class Robot:
     def switch_default_windows(self):
         handle = self.driver.window_handles
         self.driver.switch_to.window(handle[0])
+
+    def wait_find_by_xpath(self, xpath, timeout=5):
+        WebDriverWait(self.driver, timeout).until(ec.visibility_of_element_located((By.XPATH, xpath)))
+        return self.driver.find_element(By.XPATH, xpath)
