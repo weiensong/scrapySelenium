@@ -1,5 +1,5 @@
 from rpa.xiachufang_robot import XiaChuFang_Robot
-from constants import TaskType
+from constants import TaskType, TaskUrl
 from rpa.xinshipu_robot import XinShiPu_Robot
 from rpa.meishitianxia_robot import MeiShiTianXia_Robot
 
@@ -11,8 +11,8 @@ class RpaMaster:
 
     def create_robot(self):
         if self.task_type == TaskType.XIACHUFANG.value:
-            XiaChuFang_Robot(self.config).run_task()
+            XiaChuFang_Robot(self.config, TaskUrl.XIACHUFANG.value).run_task()
         if self.task_type == TaskType.XINSHIPU.value:
-            XinShiPu_Robot(self.config).run_task()
+            XinShiPu_Robot(self.config, TaskUrl.XINSHIPU.value).run_task()
         if self.task_type == TaskType.MEISHITIANXIA.value:
-            MeiShiTianXia_Robot(self.config).run_task()
+            MeiShiTianXia_Robot(self.config, TaskUrl.MEISHITIANXIA.value).run_task()

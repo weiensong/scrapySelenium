@@ -1,14 +1,14 @@
 from abc import ABC
+from selenium.common.exceptions import TimeoutException
 from unil import write_tolocal_mysql as wtm
-from selenium.common import TimeoutException
 from selenium.webdriver.common.by import By
 
 from robot import Robot
 
 
 class XiaChuFang_Robot(Robot, ABC):
-    def __init__(self, default_config):
-        super().__init__(default_config)
+    def __init__(self, default_config, url):
+        super().__init__(default_config, url)
 
     def run_task(self):
         food_list = self.find_eles_xpath('//div[@class="info pure-u"]/p[@class="name"]/a')

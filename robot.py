@@ -3,13 +3,14 @@ from selenium.webdriver.support.wait import WebDriverWait, TimeoutException
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
 from unil import *
+from constants import *
 
 
 class Robot:
 
-    def __init__(self, default_config):
+    def __init__(self, default_config, url):
         self.task = default_config
-        self.url = self.task['url']
+        self.url = url
         self.task_type = default_config['task_type']
         self.time = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
         self.options = webdriver.ChromeOptions()

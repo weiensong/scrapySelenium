@@ -1,12 +1,12 @@
 from rap_master import RpaMaster
-
+"""
+task_type
+    1:下厨房
+    2:心食谱
+    3:美食天下
+"""
 default_config = {
-    # "task_type": 1,
-    # "url": "https://www.xiachufang.com/explore/?page=1",
-    # "task_type": 2,
-    # "url": "https://www.xinshipu.com/jiachangzuofa/16485/",
     "task_type": 3,
-    "url": "https://home.meishichina.com/recipe/guangdongxiaochi/",
 }
 
 if __name__ == '__main__':
