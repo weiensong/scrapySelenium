@@ -8,7 +8,7 @@ from robot import Robot
 
 class MeiShiTianXia_Robot(Robot, ABC):
     def __init__(self, default_config, url):
-        super().__init__(default_config,url)
+        super().__init__(default_config, url)
 
     def run_task(self):
         home_cook_list = self.find_eles_xpath('//h2')
