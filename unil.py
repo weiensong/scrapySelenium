@@ -29,8 +29,9 @@ def get_time_now() -> datetime:
 def get_time_now_str(args: datetime) -> str:
     return args.strftime('%Y-%m-%d %H:%M:%S')
 
+
 # 将字典数据写入本地MySQL，传入字典与表即可
-def write_tolocal_mysql(dc,table):
+def write_tolocal_mysql(dc, table):
     keys = ','.join(dc.keys())
     values = list(dc.values())
     values = str(values).split("[")[1]
@@ -42,4 +43,3 @@ def write_tolocal_mysql(dc,table):
     cursor.execute(sql)
     conn.commit()
     conn.close()
-
