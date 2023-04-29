@@ -1,7 +1,7 @@
 import logging
-from enum import unique, IntEnum, Enum
 from datetime import datetime
 import openpyxl
+from local_runner import default_config
 import pymysql
 import pytz
 
@@ -10,7 +10,7 @@ def log_t(args):
     logger = logging.getLogger('rpa')
     logger.setLevel(logging.DEBUG)
     console_handler = logging.StreamHandler()
-    file_handler = logging.FileHandler(filename='rpa.log',
+    file_handler = logging.FileHandler(filename='log/rpa.log',
                                        encoding='UTF-8')
     logger.addHandler(console_handler)
     logger.addHandler(file_handler)
@@ -36,8 +36,7 @@ def write_tolocal_mysql(dc, table):
     values = list(dc.values())
     values = str(values).split("[")[1]
     values = values.split("]")[0]
-    conn = pymysql.connect(host='localhost', user='root', password='root', db='food', port=3306,
-                           charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
+    conn = pymysql.connect(host='localhost', user='root', password='root', db='food', port=3306)
     cursor = conn.cursor()
     sql = f'INSERT INTO {table}({keys}) VALUES ({values});'.format(table, keys, values)
     cursor.execute(sql)
