@@ -17,7 +17,7 @@ class Robot:
         self.options.add_argument("disable-blink-features=AutomationControlled")
         self.options.add_experimental_option("excludeSwitches", ['enable-automation'])
         self.driver = webdriver.Chrome(options=self.options,
-                                       executable_path='./webdriver/chromedriver_windows_111.exe')
+                                       executable_path='./webdriver/chromedriver_windows_112.exe')
 
         self.driver.get(self.url)
         self.driver.maximize_window()
