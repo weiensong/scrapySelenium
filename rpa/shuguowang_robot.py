@@ -34,5 +34,3 @@ class ShuGuoWang_Robot(Robot, ABC):
         for row in rows:
             if '西瓜' in row.text or '香菇' in row.text:
                 return row.text
-
-
