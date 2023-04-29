@@ -7,7 +7,15 @@ task_type
     4:蔬果网
 """
 default_config = {
-    "task_type": 4,
+    "task_type": 1,
+    "is_debug": 1,
+    "sql_info": {
+        "host": "localhost",
+        "user": "root",
+        "password": "root",
+        "db": "food",
+        "port": 3306
+    }
 }
 
 if __name__ == '__main__':

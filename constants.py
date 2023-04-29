@@ -2,6 +2,12 @@ from enum import unique, IntEnum, Enum
 
 
 @unique
+class DEBUG(IntEnum):
+    NOT = 0
+    IS = 1
+
+
+@unique
 class TaskType(IntEnum):
     XIACHUFANG = 1  # 下厨房
     XINSHIPU = 2  # 心食谱

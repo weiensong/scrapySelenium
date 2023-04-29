@@ -10,6 +10,7 @@ class RpaMaster:
         self.config = default_config
         self.task_type = self.config.get('task_type')
 
+
     def create_robot(self):
         if self.task_type == TaskType.XIACHUFANG.value:
             XiaChuFang_Robot(self.config, TaskUrl.XIACHUFANG.value).run_task()

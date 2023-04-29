@@ -12,10 +12,12 @@ class Robot:
         self.task = default_config
         self.url = url
         self.task_type = default_config['task_type']
+        self.is_debug = self.task['is_debug']
         self.time = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
         self.options = webdriver.ChromeOptions()
         self.options.add_argument("disable-blink-features=AutomationControlled")
         self.options.add_experimental_option("excludeSwitches", ['enable-automation'])
+        self.options.add_experimental_option('detach', True) if self.is_debug == DEBUG.IS.value else ...
         self.driver = webdriver.Chrome(options=self.options,
                                        executable_path='./webdriver/chromedriver_windows_111.exe')
 
