@@ -1,5 +1,6 @@
 import logging
 from datetime import datetime
+import openpyxl
 from local_runner import default_config
 import pymysql
 import pytz
@@ -41,3 +42,15 @@ def write_tolocal_mysql(dc, table):
     cursor.execute(sql)
     conn.commit()
     conn.close()
+
+
+# 将列表数据写入本Excel文件
+def write_to_excel(ls, path):
+    try:
+        wb = openpyxl.load_workbook(path)
+    except Exception:
+        print(Exception)
+        wb = openpyxl.Workbook()
+    sheet = wb.active
+    sheet.append(ls)
+    wb.save(path)

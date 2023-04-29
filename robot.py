@@ -19,7 +19,7 @@ class Robot:
         self.options.add_experimental_option("excludeSwitches", ['enable-automation'])
         self.options.add_experimental_option('detach', True) if self.is_debug == DEBUG.IS.value else ...
         self.driver = webdriver.Chrome(options=self.options,
-                                       executable_path='./webdriver/chromedriver_windows_111.exe')
+                                       executable_path='./webdriver/chromedriver_windows_112.exe')
 
         self.driver.get(self.url)
         self.driver.maximize_window()
@@ -57,10 +57,10 @@ class Robot:
         self.driver.find_element(By.XPATH, xpath).send_keys(keys)
 
     def find_eles_xpath(self, xpath):
-        eles = self.driver.find_elements(By.XPATH, xpath)
-        if eles:
-            return eles
+        if self.driver.find_elements(By.XPATH, xpath):
+            return self.driver.find_elements(By.XPATH, xpath)
         return []
+
 
     def click_to_last_window_xpath(self, xpath):
         self.find_ele_click_xpath(xpath)
