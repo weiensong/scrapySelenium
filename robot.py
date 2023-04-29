@@ -55,10 +55,10 @@ class Robot:
         self.driver.find_element(By.XPATH, xpath).send_keys(keys)
 
     def find_eles_xpath(self, xpath):
-        eles = self.driver.find_elements(By.XPATH, xpath)
-        if eles:
-            return eles
+        if self.driver.find_elements(By.XPATH, xpath):
+            return self.driver.find_elements(By.XPATH, xpath)
         return []
+
 
     def click_to_last_window_xpath(self, xpath):
         self.find_ele_click_xpath(xpath)

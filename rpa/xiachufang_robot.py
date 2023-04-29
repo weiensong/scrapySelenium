@@ -2,7 +2,6 @@ from abc import ABC
 from selenium.common.exceptions import TimeoutException
 from unil import write_tolocal_mysql as wtm
 from selenium.webdriver.common.by import By
-
 from robot import Robot
 
 
