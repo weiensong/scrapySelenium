@@ -1,7 +1,6 @@
 import logging
 from datetime import datetime
 import openpyxl
-from local_runner import default_config
 import pymysql
 import pytz
 
