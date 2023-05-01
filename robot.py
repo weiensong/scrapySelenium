@@ -20,7 +20,6 @@ class Robot:
         self.options.add_experimental_option('detach', True) if self.is_debug == DEBUG.IS.value else ...
         self.driver = webdriver.Chrome(options=self.options,
                                        executable_path='./webdriver/chromedriver_windows_112.exe')
-
         self.driver.get(self.url)
         self.driver.maximize_window()
 
@@ -60,7 +59,6 @@ class Robot:
         if self.driver.find_elements(By.XPATH, xpath):
             return self.driver.find_elements(By.XPATH, xpath)
         return []
-
 
     def click_to_last_window_xpath(self, xpath):
         self.find_ele_click_xpath(xpath)
