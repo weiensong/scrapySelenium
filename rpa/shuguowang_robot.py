@@ -1,8 +1,4 @@
 from abc import ABC
-from selenium.webdriver.support.wait import TimeoutException
-from selenium.webdriver.common.by import By
-
-import unil
 from unil import *
 from robot import Robot
 
@@ -14,7 +10,6 @@ class ShuGuoWang_Robot(Robot, ABC):
     def run_task(self):
         price_list = self.find_eles_xpath('//ul[@id="NongHuaZhuanYongFei1"]/li/a')
         for price in price_list:
-            # fixme next page
             price.click()
             self.switch_last_window()
             self.get_xigua_xianggu()
@@ -23,7 +18,7 @@ class ShuGuoWang_Robot(Robot, ABC):
                 data = self.get_xigua_xianggu().split("\n")
                 self.close_window()
                 self.switch_last_window()
-                unil.write_to_excel(data, './output/guoshuwang_data.xlsx')
+                write_to_excel(data, './output/guoshuwang_data.xlsx')
                 print(data)
             else:
                 self.close_window()

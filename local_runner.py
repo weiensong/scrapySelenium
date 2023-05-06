@@ -13,7 +13,7 @@ default_config = {
         "host": "localhost",
         "user": "root",
         "password": "root",
-        "db": "food",
+        "database": "food",
         "port": 3306
     }
 }

@@ -30,14 +30,14 @@ class Robot:
     def kill_robot(self):
         self.driver.quit()
 
-    def wait_ele_click_xpath_safe(self, xpath, timeout=5):
+    def wait_ele_click_xpath_safe(self, xpath: str, timeout: int = 5):
         try:
             WebDriverWait(self.driver, timeout).until(ec.visibility_of_element_located((By.XPATH, xpath)))
             self.driver.find_element(By.XPATH, xpath).click()
         except TimeoutException:
             ...
 
-    def wait_ele_xpath_safe(self, xpath, timeout=5):
+    def wait_ele_xpath_safe(self, xpath: str, timeout: int = 5):
         try:
             WebDriverWait(self.driver, timeout).until(ec.visibility_of_element_located((By.XPATH, xpath)))
             if self.driver.find_element(By.XPATH, xpath):
@@ -45,29 +45,28 @@ class Robot:
         except TimeoutException:
             return False
 
-    def wait_click_xpath(self, xpath, timeout=5):
+    def wait_click_xpath(self, xpath: str, timeout: int = 5):
         WebDriverWait(self.driver, timeout).until(ec.visibility_of_element_located((By.XPATH, xpath)))
         self.find_ele_click_xpath(xpath)
 
-    def find_ele_click_xpath(self, xpath):
+    def find_ele_click_xpath(self, xpath: str):
         self.driver.find_element(By.XPATH, xpath).click()
 
-    def send_keys_xpath(self, xpath, keys):
+    def send_keys_xpath(self, xpath: str, keys: str):
         self.driver.find_element(By.XPATH, xpath).clear()
         self.driver.find_element(By.XPATH, xpath).send_keys(keys)
 
-    def find_eles_xpath(self, xpath):
+    def find_eles_xpath(self, xpath: str) -> list:
         if self.driver.find_elements(By.XPATH, xpath):
             return self.driver.find_elements(By.XPATH, xpath)
         return []
 
-
-    def click_to_last_window_xpath(self, xpath):
+    def click_to_last_window_xpath(self, xpath: str):
         self.find_ele_click_xpath(xpath)
         handle = self.driver.window_handles
         self.driver.switch_to.window(handle[-1])
 
-    def get_ele_text(self, xpath):
+    def get_ele_text(self, xpath: str) -> str:
         text = None
         try:
             text = self.driver.find_element(By.XPATH, xpath).text
@@ -75,7 +74,7 @@ class Robot:
             ...
         return text
 
-    def input_clear_xpath(self, xpath):
+    def input_clear_xpath(self, xpath: str):
         return self.driver.find_element(By.XPATH, xpath).clear()
 
     def switch_last_window(self):
@@ -85,7 +84,7 @@ class Robot:
     def refresh(self):
         self.driver.refresh()
 
-    def find_ele_xpath(self, xpath):
+    def find_ele_xpath(self, xpath: str) -> bool:
         try:
             ele = self.driver.find_element(By.XPATH, xpath)
             if ele:
@@ -96,13 +95,13 @@ class Robot:
     def close_window(self):
         self.driver.close()
 
-    def wait_ele_by_xpath(self, xpath, timeout=5):
+    def wait_ele_by_xpath(self, xpath: str, timeout: int = 5):
         WebDriverWait(self.driver, timeout).until(ec.visibility_of_element_located((By.XPATH, xpath)))
 
     def switch_default_windows(self):
         handle = self.driver.window_handles
         self.driver.switch_to.window(handle[0])
 
-    def wait_find_by_xpath(self, xpath, timeout=5):
+    def wait_find_by_xpath(self, xpath: str, timeout: int = 5):
         WebDriverWait(self.driver, timeout).until(ec.visibility_of_element_located((By.XPATH, xpath)))
         return self.driver.find_element(By.XPATH, xpath)

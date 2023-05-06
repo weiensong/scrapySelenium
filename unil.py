@@ -1,12 +1,55 @@
 import logging
 from datetime import datetime
 import openpyxl
-from local_runner import default_config
 import pymysql
 import pytz
+import os
+
+
+class SqlMaster:
+    def __init__(self, default_config):
+        host = default_config['sql_info']['host']
+        user = default_config['sql_info']['user']
+        password = default_config['sql_info']['password']
+        port = default_config['sql_info']['port']
+        database = default_config['sql_info']['database']
+        self.conn = pymysql.connect(host=host, user=user, password=password, port=port, database=database)
+        self.cursor = self.conn.cursor()
+
+    def submit_sql_with_return(self, sql: str) -> tuple:
+        """
+        执行sql
+        :param sql: sql语句
+        :return: 元组，即有表的返回
+        """
+        log_t(sql)
+        self.cursor.execute(sql)
+        return self.cursor.fetchall()
+
+    def only_submit_sql(self, sql: str):
+        """
+        执行sql
+        :param sql: sql
+        :return: None，即几行受影响
+        """
+        log_t(sql)
+        self.cursor.execute(sql)
+        self.conn.commit()
+
+    def close_connect(self):
+        """
+        关闭连接
+        :return: None
+        """
+        self.conn.close()
 
 
 def log_t(args):
+    """
+    日志模块，等级为debug
+    :param args: 仅一个参数
+    :return:
+    """
     logger = logging.getLogger('rpa')
     logger.setLevel(logging.DEBUG)
     console_handler = logging.StreamHandler()
@@ -22,16 +65,27 @@ def log_t(args):
     logger.removeHandler(console_handler)
 
 
+@property
 def get_time_now() -> datetime:
+    """
+    获取当前日期
+    :return: datetime
+    """
     return datetime.now(pytz.timezone('Asia/Shanghai')).now()
 
 
 def get_time_now_str(args: datetime) -> str:
+    """
+    获取当前日期
+    :param args: datetime类型的参数
+    :return: str
+    """
     return args.strftime('%Y-%m-%d %H:%M:%S')
 
 
 # 将字典数据写入本地MySQL，传入字典与表即可
 def write_tolocal_mysql(dc, table):
+    # todo 这个模块将会被移除，请转到SqlMaster
     keys = ','.join(dc.keys())
     values = list(dc.values())
     values = str(values).split("[")[1]
@@ -44,13 +98,14 @@ def write_tolocal_mysql(dc, table):
     conn.close()
 
 
-# 将列表数据写入本Excel文件
-def write_to_excel(ls, path):
-    try:
-        wb = openpyxl.load_workbook(path)
-    except Exception:
-        print(Exception)
-        wb = openpyxl.Workbook()
+def write_to_excel(_list: list, path: str):
+    """
+    将列表数据写入本Excel文件
+    :param _list: 列表
+    :param path: 存储路径
+    :return:
+    """
+    wb = openpyxl.load_workbook(path) if os.path.exists(path) else openpyxl.Workbook()
     sheet = wb.active
-    sheet.append(ls)
+    sheet.append(_list)
     wb.save(path)
