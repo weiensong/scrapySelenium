@@ -21,3 +21,9 @@ class TaskUrl(Enum):
     XINSHIPU = 'https://www.xinshipu.com/jiachangzuofa/16485/'
     MEISHITIANXIA = 'https://home.meishichina.com/recipe/guangdongxiaochi/'
     SHUGUOWANG = 'http://www.vegnet.com.cn/Market/477.html?page=1'
+
+
+@unique
+class SqlState(IntEnum):
+    ON = 1
+    OFF = 0

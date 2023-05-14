@@ -36,12 +36,9 @@ class SqlMaster:
         self.cursor.execute(sql)
         self.conn.commit()
 
-    def close_connect(self):
-        """
-        关闭连接
-        :return: None
-        """
+    def __del__(self):
         self.conn.close()
+        self.cursor.close()
 
 
 def log_t(args):
