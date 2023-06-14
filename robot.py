@@ -4,9 +4,10 @@ from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
 from unil import *
 from constants import *
+from abc import ABC, abstractmethod
 
 
-class Robot:
+class Robot(ABC):
 
     def __init__(self, default_config, url):
         self.task = default_config
@@ -23,6 +24,7 @@ class Robot:
         self.driver.get(self.url)
         self.driver.maximize_window()
 
+    @abstractmethod
     def run_task(self):
         raise NotImplementedError
 
