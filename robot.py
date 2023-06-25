@@ -1,4 +1,8 @@
+import traceback
+from typing import List
+
 from selenium import webdriver
+from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.wait import WebDriverWait, TimeoutException
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
@@ -20,7 +24,7 @@ class Robot(ABC):
         self.options.add_experimental_option("excludeSwitches", ['enable-automation'])
         self.options.add_experimental_option('detach', True) if self.is_debug == DEBUG.IS.value else ...
         self.driver = webdriver.Chrome(options=self.options,
-                                       executable_path='./webdriver/chromedriver_windows_112.exe')
+                                       executable_path='./webdriver/chromedriver_windows_114.exe')
         self.driver.get(self.url)
         self.driver.maximize_window()
 
@@ -106,3 +110,17 @@ class Robot(ABC):
     def wait_find_by_xpath(self, xpath, timeout=5):
         WebDriverWait(self.driver, timeout).until(ec.visibility_of_element_located((By.XPATH, xpath)))
         return self.driver.find_element(By.XPATH, xpath)
+
+    def wait_eles_by_xpath(self, xpath, timeout=10) -> List[WebElement]:
+        try:
+            return WebDriverWait(self.driver, timeout).until(
+                ec.presence_of_all_elements_located((By.XPATH, xpath)))
+        except TimeoutException:
+            return []
+
+    def scroll_to_element_safe(self, ele):
+        try:
+            el = self.wait_ele_by_xpath(ele) if isinstance(ele, str) else ele
+            self.driver.execute_script("arguments[0].scrollIntoView(true)", el)
+        except:
+            log_t(traceback.format_exc())

@@ -3,6 +3,7 @@ from constants import TaskType, TaskUrl, SqlState
 from rpa.xinshipu_robot import XinShiPu_Robot
 from rpa.meishitianxia_robot import MeiShiTianXia_Robot
 from rpa.shuguowang_robot import ShuGuoWang_Robot
+from rpa.dongfangcaifu_robot import DongFangCaiFu_Robot
 from unil import log_t
 from abc import ABC
 
@@ -28,5 +29,7 @@ class RpaMaster(ABC):
                 MeiShiTianXia_Robot(self.config, TaskUrl.MEI_SHI_TIAN_XIA.value).run_task()
             elif self.task_type == TaskType.SHU_GUO_WANG.value:
                 ShuGuoWang_Robot(self.config, TaskUrl.SHU_GUO_WANG.value).run_task()
+            elif self.task_type == TaskType.DONG_FANG_CAI_FU.value:
+                DongFangCaiFu_Robot(self.config, TaskUrl.DONG_FANG_CAI_FU.value).run_task()
         except Exception as e:
             log_t(e)

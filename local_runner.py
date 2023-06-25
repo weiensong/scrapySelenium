@@ -5,9 +5,10 @@ task_type
     2:心食谱
     3:美食天下
     4:蔬果网
+    5:东方财务
 """
 default_config = {
-    "task_type": 4,
+    "task_type": 5,
     "is_debug": 1,
     "sql_info": {
         "state": 0,
