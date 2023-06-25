@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 from robot import Robot
 
 
-class XinShiPu_Robot(Robot, ABC):
+class XinShiPu_Robot(Robot):
     def __init__(self, default_config, url):
         super().__init__(default_config, url)
 

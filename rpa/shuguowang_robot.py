@@ -4,7 +4,7 @@ import unil
 from robot import Robot
 
 
-class ShuGuoWang_Robot(Robot, ABC):
+class ShuGuoWang_Robot(Robot):
     def __init__(self, default_config, url):
         super().__init__(default_config, url)
 

@@ -9,18 +9,18 @@ class DEBUG(IntEnum):
 
 @unique
 class TaskType(IntEnum):
-    XIACHUFANG = 1  # 下厨房
-    XINSHIPU = 2  # 心食谱
-    MEISHITIANXIA = 3  # 美食天下
-    SHUGUOWANG = 4  # 蔬果网
+    XIA_CHU_FANG = 1  # 下厨房
+    XIN_SHI_PU = 2  # 心食谱
+    MEI_SHI_TIAN_XIA = 3  # 美食天下
+    SHU_GUO_WANG = 4  # 蔬果网
 
 
 @unique
 class TaskUrl(Enum):
-    XIACHUFANG = 'https://www.xiachufang.com/explore/?page=1'
-    XINSHIPU = 'https://www.xinshipu.com/jiachangzuofa/16485/'
-    MEISHITIANXIA = 'https://home.meishichina.com/recipe/guangdongxiaochi/'
-    SHUGUOWANG = 'http://www.vegnet.com.cn/Market/477.html?page=1'
+    XIA_CHU_FANG = 'https://www.xiachufang.com/explore/?page=1'
+    XIN_SHI_PU = 'https://www.xinshipu.com/jiachangzuofa/16485/'
+    MEI_SHI_TIAN_XIA = 'https://home.meishichina.com/recipe/guangdongxiaochi/'
+    SHU_GUO_WANG = 'http://www.vegnet.com.cn/Market/477.html?page=1'
 
 
 @unique
