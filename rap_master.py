@@ -14,22 +14,24 @@ class RpaMaster(ABC):
         log_t(f'default_config = {self.config}')
         self.task_type = self.config.get('task_type')
         self.sql_state = self.config.get('sql_info').get('state')
+        self.robot = None
         # todo 需要sql
         # self.sql_state = None
         # if self.sql_state == SqlState.ON:
         #     self.sql_master = SqlMaster(self.config)
 
-    def create_robot(self):
+    def robot_factory(self):
         try:
             if self.task_type == TaskType.XIA_CHU_FANG.value:
-                XiaChuFang_Robot(self.config, TaskUrl.XIA_CHU_FANG.value).run_task()
+                self.robot = XiaChuFang_Robot(self.config, TaskUrl.XIA_CHU_FANG.value)
             elif self.task_type == TaskType.XIN_SHI_PU.value:
-                XinShiPu_Robot(self.config, TaskUrl.XIN_SHI_PU.value).run_task()
+                self.robot = XinShiPu_Robot(self.config, TaskUrl.XIN_SHI_PU.value)
             elif self.task_type == TaskType.MEI_SHI_TIAN_XIA.value:
-                MeiShiTianXia_Robot(self.config, TaskUrl.MEI_SHI_TIAN_XIA.value).run_task()
+                self.robot = MeiShiTianXia_Robot(self.config, TaskUrl.MEI_SHI_TIAN_XIA.value)
             elif self.task_type == TaskType.SHU_GUO_WANG.value:
-                ShuGuoWang_Robot(self.config, TaskUrl.SHU_GUO_WANG.value).run_task()
+                self.robot = ShuGuoWang_Robot(self.config, TaskUrl.SHU_GUO_WANG.value)
             elif self.task_type == TaskType.DONG_FANG_CAI_FU.value:
-                DongFangCaiFu_Robot(self.config, TaskUrl.DONG_FANG_CAI_FU.value).run_task()
+                self.robot = DongFangCaiFu_Robot(self.config, TaskUrl.DONG_FANG_CAI_FU.value)
+            return self.robot
         except Exception as e:
             log_t(e)
