@@ -13,7 +13,8 @@ class SqlMaster:
         password = default_config['sql_info']['password']
         port = default_config['sql_info']['port']
         database = default_config['sql_info']['database']
-        self.conn = pymysql.connect(host=host, user=user, password=password, port=port, database=database)
+        autocommit = True
+        self.conn = pymysql.connect(host=host, user=user, password=password, port=port, database=database, autocommit=autocommit)
         self.cursor = self.conn.cursor()
 
     def submit_sql_with_return(self, sql: str) -> tuple:
